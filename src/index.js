@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express');
 const app = express();
 app.use(express.urlencoded({ extended: true }));
-const connectDB = require('./api/v1/helpers/connectDB');
+const connectDB = require('./api/v1/services/connectDB');
 
 const PORT = process.env.PORT || 5000;
 
@@ -13,6 +13,9 @@ app.get('/', (req, res) => {
 });
 
 app.use('/v1/role', roleRoutes);
+app.use('/v1/auth', authRoutes);
+app.use('/v1/community', communityRoutes);
+app.use('/v1/member', memberRoutes);
 
 const start = async () => {
     try {
